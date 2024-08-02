@@ -1,5 +1,4 @@
 <script>
-import { compileTemplate } from 'vue/compiler-sfc';
 
   export default {
     data() {
@@ -58,10 +57,6 @@ import { compileTemplate } from 'vue/compiler-sfc';
         })
 
       }
-    },
-
-    mounted() {
-
     }
   }
   
