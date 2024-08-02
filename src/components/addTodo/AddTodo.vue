@@ -25,7 +25,7 @@
           return
         }
         this.addTodo({
-          text: this.currentText.trim(),
+          text: this.currentText.trim().replace(/\s+/g, ' '),
           checkbox: false,
           id: Date.now()
         })

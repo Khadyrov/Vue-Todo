@@ -43,7 +43,7 @@ import { compileTemplate } from 'vue/compiler-sfc';
           return
         }
 
-        this.currentTodo.text = this.tempText.trim()
+        this.currentTodo.text = this.tempText.trim().replace(/\s+/g, ' ')
         this.changeText(this.currentTodo)
         this.currentTodo = {}
         this.error = ''
