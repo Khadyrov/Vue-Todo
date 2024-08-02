@@ -1,0 +1,30 @@
+.addTodo__content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.addTodo__content  > input, button {
+  padding: 10px;
+  margin: 0;
+  background: transparent;
+}
+
+.addTodo__content > input:focus {
+  outline: 0;
+}
+
+.addTodo__content > input {
+  max-width: 300px;
+  width: 80%;
+  color: rgb(193, 181, 167);
+}
+
+.addTodo__error {
+  text-align: center;
+  color: rgb(193, 181, 167);
+  font-size: 0.9em;
+}
+
+
+
+
