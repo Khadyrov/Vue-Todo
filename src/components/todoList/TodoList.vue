@@ -6,7 +6,8 @@ import { compileTemplate } from 'vue/compiler-sfc';
       return {
         defaultTodo: {},
         currentTodo: {},
-        tempText: false
+        tempText: '',
+        error: ''
       }
     },
     props: {
@@ -37,9 +38,15 @@ import { compileTemplate } from 'vue/compiler-sfc';
       handleText(e) {
         e.preventDefault()
 
-        this.currentTodo.text = this.tempText
+        if(this.tempText.trim() === ''){
+          this.error = 'Please write something'
+          return
+        }
+
+        this.currentTodo.text = this.tempText.trim()
         this.changeText(this.currentTodo)
         this.currentTodo = {}
+        this.error = ''
       },
 
       handleCheckbox(val) {
@@ -84,6 +91,7 @@ import { compileTemplate } from 'vue/compiler-sfc';
 
     <form class="changeTodo__content">
       <input v-model="tempText" type="text">
+      <div v-if="error !== ''"> {{ error }}</div>
       <button @click="e => handleText(e)" type="submit">Submit</button>
     </form>
 

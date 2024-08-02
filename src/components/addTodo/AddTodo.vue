@@ -25,7 +25,7 @@
           return
         }
         this.addTodo({
-          text: this.currentText,
+          text: this.currentText.trim(),
           checkbox: false,
           id: Date.now()
         })

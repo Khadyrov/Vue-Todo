@@ -34,7 +34,6 @@
 
       changeCheckbox(val){
 
-        console.log(val);
         const oldTodo = this.todos.find(e => e.id === val.id)
         Object.assign(oldTodo, val)
         this.saveToLocalStorage()
