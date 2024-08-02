@@ -57,6 +57,15 @@
         })
 
       }
+    },
+
+    watch: {
+      tempText(newValue) {
+        if(newValue.length > 0 || this.error !== '') {
+
+          this.error = ''
+        }
+      }
     }
   }
   

@@ -30,6 +30,15 @@
 
         this.currentText = ''
       }
+    },
+
+    watch: {
+      currentText(newValue) {
+        if(newValue.length > 0 || this.error !== '') {
+
+          this.error = ''
+        }
+      }
     }
   }
 
