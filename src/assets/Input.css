@@ -1,0 +1,76 @@
+button {
+  color: #ffffff; 
+  background-color: rgba(255, 255, 255, 0.2); 
+  border: 1px solid rgba(255, 255, 255, 0.3); 
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+
+button:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5); /* Светло-серый контур */
+}
+
+button:disabled {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #bdbdbd; 
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+
+input[type="checkbox"] {
+  appearance: none; 
+  background-color: rgba(255, 255, 255, 0.1); 
+  border: 1px solid rgba(255, 255, 255, 0.3); 
+  border-radius: 4px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+
+input[type="checkbox"]:checked::before {
+  content: '\2713'; 
+  color: #ffffff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+}
+
+input[type="checkbox"]:hover {
+  background-color: rgba(255, 255, 255, 0.2); 
+  border-color: rgba(255, 255, 255, 0.5); 
+}
+
+input[type="text"], input[type="search"] {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3); 
+  border-radius: 5px;
+  color: #ffffff;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+
+input[type="text"]:focus, input[type="search"]:focus {
+  border-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.2); 
+  outline: none;
+}

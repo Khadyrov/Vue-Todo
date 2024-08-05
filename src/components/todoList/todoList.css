@@ -82,3 +82,9 @@
 .active {
   background: #4d7443;
 }
+
+
+.todo__btns {
+  display: flex;
+  align-items: center;
+}
