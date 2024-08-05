@@ -1,56 +1,44 @@
-<script>
+<script lang="ts">
+
+  import { useTodoStore } from '@/stores/todoStore';
+  import { todoTypes } from '@/types/todoTypes';
 
   export default {
     data() {
       return {
-        defaultTodo: {},
-        currentTodo: {},
-        tempText: '',
-        error: ''
-      }
-    },
-    props: {
-      data: {
-        type: Array,
-        required: true
-      },
-      deleteTodo: {
-        type: Function,
-        requird: true
-      },
-      changeText: {
-        type: Function,
-        requird: true
-      },
-      changeCheckbox: {
-        type: Function,
-        requird: true
+        defaultTodo: {} as todoTypes,
+        currentTodo: {} as todoTypes || {},
+        tempText: '' as string,
+        error: '' as string,
+        todoStore: useTodoStore()
       }
     },
     methods: {
 
-      openAdjustPanel(val) {
+      openAdjustPanel(val : todoTypes) {
         this.currentTodo = val
         this.tempText = val.text
       },
 
-      handleText(e) {
+      handleText(e: Event) {
         e.preventDefault()
 
         if(this.tempText.trim() === ''){
           this.error = 'Please write something'
           return
         }
+        console.log(this.todoStore.todos);
+        
 
         this.currentTodo.text = this.tempText.trim().replace(/\s+/g, ' ')
-        this.changeText(this.currentTodo)
+        this.todoStore.changeTodo(this.currentTodo)
         this.currentTodo = {}
         this.error = ''
       },
 
-      handleCheckbox(val) {
+      handleCheckbox(val : todoTypes) {
 
-        this.changeCheckbox({
+        this.todoStore.changeCheckbox({
           text: val.text,
           id: val.id,
           checkbox: !val.checkbox
@@ -60,7 +48,7 @@
     },
 
     watch: {
-      tempText(newValue) {
+      tempText(newValue :string) {
         if(newValue.length > 0 || this.error !== '') {
 
           this.error = ''
@@ -75,7 +63,7 @@
 <template>
 
   <div 
-    v-for="val of data" 
+    v-for="val of todoStore.todos" 
     class="todo" 
     :key="val.id"
     :class="val.checkbox? 'active': ''"
@@ -86,7 +74,7 @@
     <div class="todo__btns">
       <input type="checkbox" v-model="val.checkbox" @click="handleCheckbox(val)">
       <button @click="openAdjustPanel(val)">Change Text</button>
-      <button @click="deleteTodo(val.id)">remove</button>
+      <button @click="todoStore.deleteTodo(val.id)">remove</button>
     </div>
 
   </div>

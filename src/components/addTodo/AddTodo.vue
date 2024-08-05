@@ -1,20 +1,18 @@
-<script>
+<script lang="ts">
+  import { useTodoStore } from '@/stores/todoStore';
+  import { todoTypes } from '@/types/todoTypes';
+  
   export default {
     data() {
       return {
-        currentText: '',
-        error: ''
+        currentText: '' ,
+        error: '' ,
+        todoStore: useTodoStore() as todoTypes
       }
       
     },
-    props :{
-      addTodo: {
-        type: Function,
-        required: true
-      }
-    },
     methods :{
-      currentTodo (e) {
+      currentTodo (e: Event) {
 
         e.preventDefault()
 
@@ -22,7 +20,8 @@
           this.error = 'Please write something'
           return
         }
-        this.addTodo({
+        
+        this.todoStore.addTodo({
           text: this.currentText.trim().replace(/\s+/g, ' '),
           checkbox: false,
           id: Date.now()
@@ -33,7 +32,7 @@
     },
 
     watch: {
-      currentText(newValue) {
+      currentText(newValue : string) {
         if(newValue.length > 0 || this.error !== '') {
 
           this.error = ''
