@@ -19,7 +19,7 @@
 <template>
     <main class="main">
       <div class="container">
-        <h1 class="title"> Todo</h1>
+        <h1 class="title">Your Task Tracker</h1>
 
         <div class="header">
           <AddTodo  />
