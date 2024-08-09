@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Nabla&family=Public+Sans&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url('./images/Mountains(BG).jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  color: #64647F;
+}
+
+#app {
+  width: 100%;
+  font-family: "Arvo", serif;
+  font-weight: 400;
+  font-style: normal;
+  display: flex;
+  justify-content: center;
+}
+
+.main {
+  max-width: 700px;
+  width: 100%;
+  margin: 3em auto;
+  border: 1px solid white;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px 0px rgb(46, 58, 69);
+  display: flex;
+  justify-content: center;
+  background: rgb(255, 255, 255, 0.8);  
+  /* backdrop-filter: blur(30px); */
+}
+
+.header {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.container {
+  width: 600px;
+}
+
+.title {
+  margin-top: 0.5em;
+  text-align: center;
+  padding: 5px;
+  font-size: 2.5em;
+}
+
+
+input, button {
+  padding: 10px;
+  margin: 0;
+  background: #454871;
+  border: 2px solid rgb(193, 181, 167);
+  color: #F9F5FF;
+  border-radius: 10px;
+}

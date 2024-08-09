@@ -1,42 +1,43 @@
 import { defineStore } from "pinia";
-import { todoTypes } from "@/types/todoTypes";
+import { TodoTypes } from "../types/TodoTypes";
+import { ref } from "vue";
 
+export const useTodoStore = defineStore('todoStore', () => {
+  const todos = ref(JSON.parse(localStorage.getItem('todos') || '[]'))
 
-export const useTodoStore = defineStore('todoStore', {
-  state :() => ({
-    todos : JSON.parse(localStorage.getItem('todos')) as todoTypes[] || [] as todoTypes[]
+  const addTodo = (val: TodoTypes) => {
+    todos.value.push(val)
+      
+    saveToLocalStorage()
+  }
+
+  const changeTodo = (val: TodoTypes) => {
+    const oldTodo = todos.value.find((e: TodoTypes) => e.id === val.id) as TodoTypes
+    Object.assign(oldTodo, val)
+
+    saveToLocalStorage()
+  }
+
+  const deleteTodo = (val: number) => {      
+    todos.value = todos.value.filter((e: TodoTypes) => e.id !== val)
+
+    saveToLocalStorage()
+  }
     
-  }),
-  actions: {
-    addTodo(val: todoTypes) {
-      
-      this.todos.push(val)
-      
-      this.saveToLocalStorage()
+  const changeCheckbox = (val: TodoTypes) => {
+    const oldTodo = todos.value.find((e: TodoTypes) => e.id === val.id) as TodoTypes
+    oldTodo.isCompleted = val.isCompleted
 
-    },
-    changeTodo(val: todoTypes) {
-      const oldTodo = this.todos.find(e => e.id === val.id)
+    saveToLocalStorage()
+  }
+    
+  const saveToLocalStorage = () => {
+    localStorage.setItem('todos', JSON.stringify(todos.value))
+  }
 
-      Object.assign(oldTodo, val)
-
-      this.saveToLocalStorage()
-    },
-    deleteTodo(val: number) {      
-      this.todos = this.todos.filter(e => e.id !== val)
-
-      this.saveToLocalStorage()
-    },
-    changeCheckbox(val: todoTypes) {
-      const oldTodo = this.todos.find(e => e.id === val.id)
-
-      oldTodo.checkbox = val.checkbox
-
-
-      this.saveToLocalStorage()
-    },
-    saveToLocalStorage() {
-      localStorage.setItem('todos', JSON.stringify(this.todos))
-    },
+  return {
+    todos, addTodo, changeTodo, deleteTodo,changeCheckbox
   }
 })
+
+

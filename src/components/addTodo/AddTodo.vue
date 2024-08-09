@@ -1,65 +1,55 @@
-<script lang="ts">
-  import { useTodoStore } from '@/stores/todoStore';
-  import { todoTypes } from '@/types/todoTypes';
-  
-  export default {
-    data() {
-      return {
-        currentText: '' ,
-        error: '' ,
-        todoStore: useTodoStore() as todoTypes
-      }
-      
-    },
-    methods :{
-      currentTodo (e: Event) {
+<script lang="ts" setup>
+  import { ref, watch } from 'vue';
+  import { useTodoStore } from '../../stores/todoStore';
+  import { TodoTypes } from '../../types/TodoTypes';  
 
-        e.preventDefault()
+  const currentText = ref('' as string)
+  const error =  ref('' as string )
+  const todoStore = ref(useTodoStore())
 
-        if(this.currentText.trim() === '') {
-          this.error = 'Please write something'
-          return
-        }
-        
-        this.todoStore.addTodo({
-          text: this.currentText.trim().replace(/\s+/g, ' '),
-          checkbox: false,
-          id: Date.now()
-        })
 
-        this.currentText = ''
-      }
-    },
+  const currentTodo = (e: Event) => {
+    e.preventDefault()
 
-    watch: {
-      currentText(newValue : string) {
-        if(newValue.length > 0 || this.error !== '') {
-
-          this.error = ''
-        }
-      }
+    if(currentText.value.trim() === '') {
+      error.value = 'Please write something'
+      return
     }
+    
+    todoStore.value.addTodo({
+      text: currentText.value.trim().replace(/\s+/g, ' '),
+      isCompleted: false,
+      id: Date.now()
+    } as TodoTypes) 
+
+    currentText.value = ''
   }
 
+
+  watch(currentText, (newValue: string) => {
+    if(newValue.length > 0 || error.value !== '') {
+      error.value = ''
+    }
+  })
+  
 </script>
 
 <template>
   <div class="addTodo">
 
     <form class="addTodo__content">
-
       <input
         type="search" 
         v-model="currentText" 
         placeholder="Enter text" 
       >
+
       <button
         type="submit"
         @click="(e) => currentTodo(e)"
       > 
         Add Todo 
       </button>
-
     </form>
 
     <div class="addTodo__error" v-if="error != ''">{{ error }}</div>
@@ -70,6 +60,6 @@
 </template>
 
 <style>
-  @import url(./addTodo.css);
+  @import url(./addTodo.scss);
 
 </style>

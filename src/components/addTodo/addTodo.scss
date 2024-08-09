@@ -1,0 +1,34 @@
+.addTodo {
+  &__content {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+
+  
+  &__content > input {
+    max-width: 300px;
+    width: 80%;  
+  
+    &::placeholder {
+      color: #F9F5FF;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+  }
+  
+  &__error {
+    text-align: center;
+    color: rgb(193, 181, 167);
+    font-size: 0.9em;
+  }
+
+}
+
+
+
+
+
+

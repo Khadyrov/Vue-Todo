@@ -1,0 +1,13 @@
+.todoList {
+  width: 100%;
+  margin-top: 20px;  
+  background: #d0d0d0;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 20px 0;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}
+

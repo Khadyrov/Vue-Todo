@@ -1,5 +1,5 @@
-export interface todoTypes {
+export interface TodoTypes {
   text: string,
   id: number,
-  checkbox: boolean
+  isCompleted: boolean
 }
